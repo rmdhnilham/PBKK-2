@@ -2,12 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Products extends CI_Controller
+class Services extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("product_model");
+        $this->load->model("service_model");
         $this->load->library('form_validation');
         $this->load->model("user_model");
         if($this->user_model->isNotLogin()) redirect(site_url('admin/login'));
@@ -15,49 +15,49 @@ class Products extends CI_Controller
 
     public function index()
     {
-        $data["products"] = $this->product_model->getAll();
-        $this->load->view("admin/product/list", $data);
+        $data["services"] = $this->service_model->getAll();
+        $this->load->view("admin/service/list", $data);
     }
 
     public function add()
     {
-        $product = $this->product_model;
+        $service = $this->service_model;
         $validation = $this->form_validation;
-        $validation->set_rules($product->rules());
+        $validation->set_rules($service->rules());
 
         if ($validation->run()) {
-            $product->save();
+            $service->save();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-        $this->load->view("admin/product/new_form");
+        $this->load->view("admin/service/new_form");
     }
 
     public function edit($id = null)
     {
-        if (!isset($id)) redirect('admin/products');
+        if (!isset($id)) redirect('admin/services');
        
-        $product = $this->product_model;
+        $service = $this->service_model;
         $validation = $this->form_validation;
-        $validation->set_rules($product->rules());
+        $validation->set_rules($service->rules());
 
         if ($validation->run()) {
-            $product->update();
+            $service->update();
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-        $data["product"] = $product->getById($id);
-        if (!$data["product"]) show_404();
+        $data["service"] = $service->getById($id);
+        if (!$data["service"]) show_404();
         
-        $this->load->view("admin/product/edit_form", $data);
+        $this->load->view("admin/service/edit_form", $data);
     }
 
     public function delete($id=null)
     {
         if (!isset($id)) show_404();
         
-        if ($this->product_model->delete($id)) {
-            redirect(site_url('admin/products'));
+        if ($this->service_model->delete($id)) {
+            redirect(site_url('admin/services'));
         }
     }
 }
