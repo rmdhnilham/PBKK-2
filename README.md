@@ -1,7 +1,4 @@
-# Tugas 2 PBKK
-
-Membuat routing halaman About dan Contact pada framework CodeIgniter
-
-# Tugas 3 PBKK
-
-Menggunakan Bootstrap, menerapkan template, dan mengimplementasi CRUD dengan database pada framework CodeIgniter
+# TUGAS-PBKK-3
+Nama : Raja Permata Boy Mangatur Simarmata<br>
+NRP  : 05111740000070<br>
+Kelas: PBKK-B
